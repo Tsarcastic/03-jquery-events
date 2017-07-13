@@ -34,18 +34,16 @@ articleView.populateFilters = function() {
 articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
-      $('placeholder').each(function() {
         $('article').hide();
-        $('article[data-category = "' + $(this).val() +'"]').show();
-      })
-} else {
-    $('article').show();
-)
+        $('article[data-attribute="'+ $(this).val() +'"]').fadeIn();
+    } else {
+      $('article').fadeIn();
+      $('article.template').hide();
+}
 
-      // TODO: If the select box was changed to an option that is blank, we should
+
+      // TODONE: If the select box was changed to an option that is blank, we should
       //       show all the articles, except the one article we are using as a template.
-
-    }
     $('#author-filter').val('');
   });
 };
@@ -55,7 +53,23 @@ articleView.handleCategoryFilter = function() {
   //       When an option with a value is selected, hide all the articles, then reveal the matches.
   //       When the blank (default) option is selected, show all the articles, except for the template.
   //       Be sure to reset the #author-filter while you are at it!
+  $('#author-filter').on('change', function() {
+    if ($(this).val()) {
+        $('article').hide();
+        $('article[data-category="'+ $(this).val() +'"]').fadeIn();
+      )
+    } else {
+      $('article').fadeIn();
+      $('article.template').hide();
+  }
 
+
+      // TODONE: If the select box was changed to an option that is blank, we should
+      //       show all the articles, except the one article we are using as a template.
+
+    }
+    $('#author-filter').val('');
+  });
 };
 
 articleView.handleMainNav = function() {
@@ -66,7 +80,12 @@ articleView.handleMainNav = function() {
   //       data available to you on the .tab element that was clicked.
 
 
-  $('.main-nav .tab:first').click(); // Let's now trigger a click on the first .tab element, to set up the page.
+  $('.main-nav .tab:first').on('click', function() {
+    // $('*').hide()
+    console.log('yes this works too')
+  }
+
+); // Let's now trigger a click on the first .tab element, to set up the page.
 };
 
 articleView.setTeasers = function() {
@@ -84,5 +103,6 @@ articleView.setTeasers = function() {
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready.
 $(document).ready(function() {
+  console.log('blah blah blah')
 
 })
